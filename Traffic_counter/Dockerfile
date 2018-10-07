@@ -18,6 +18,7 @@ RUN apt-get update
 
 #Install libwsclient
 RUN git clone https://github.com/PTS93/libwsclient && \
+    apt-get install libtool m4 automake && \
     cd libwsclient && \
     ./autogen.sh && \
     ./configure && make && make install && \
