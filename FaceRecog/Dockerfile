@@ -14,8 +14,8 @@ RUN apt-get update
 
 
 #Dlib Installation
-RUN apt-get install libopenblas-dev liblapack-dev
-RUN apt-get install libx11-dev libgtk-3-dev
+RUN apt-get install libopenblas-dev liblapack-dev -y
+RUN apt-get install libx11-dev libgtk-3-dev -y
 RUN pip3 install dlib
 
 #Install Flask
@@ -24,6 +24,6 @@ RUN pip3 install flask
 RUN python3 -m pip install pymongo
 
 #Install jsonpickle
-RUN apt-get install python3-jsonpickle
+RUN apt-get install python3-jsonpickle -y
 #Install face_recognition
 RUN pip3 install face_recognition

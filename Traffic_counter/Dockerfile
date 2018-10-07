@@ -18,7 +18,7 @@ RUN apt-get update
 
 #Install libwsclient
 RUN git clone https://github.com/PTS93/libwsclient && \
-    apt-get install libtool m4 automake && \
+    apt-get install -y libtool m4 automake && \
     cd libwsclient && \
     ./autogen.sh && \
     ./configure && make && make install && \
@@ -28,14 +28,14 @@ RUN git clone https://github.com/PTS93/libwsclient && \
 RUN wget https://github.com/radarsat1/liblo/releases/download/0.29/liblo-0.29.tar.gz --no-check-certificate && \
     tar xvfz liblo-0.29.tar.gz && \
     cd liblo-0.29 && \
-    ./configure && make && sudo make install && \
+    ./configure && make && make install && \
     cd /
 
 #Install json-c
 RUN git clone https://github.com/json-c/json-c.git && \
     cd json-c && \
     sh autogen.sh && \
-    ./configure && make && make check && sudo make install && \
+    ./configure && make && make check && make install && \
     cd /
 #Install darknet
 RUN git clone https://github.com/meso-unimpressed/darknet-net.git && \
