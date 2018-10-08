@@ -1,0 +1,10 @@
+dlib 
+cv2
+flask
+pymongo
+numpy
+json
+jsonpickle
+face_recognition
+threading
+python3.6
