@@ -6,15 +6,16 @@
 #Download base image bmabir17/cuda-opencv-nodejs:v1
 FROM bmabir17/cuda-opencv-nodejs:v1
 
+#FROM opencv-nodejs:v1
 LABEL maintainer "bmabir17@gmail.com"
 ENV OPENCV_VERSION 3.4.2
 
 #update ubuntu Software repository
 RUN apt-get update
 
-###################
+####################
 #Install Darknet-net
-###################
+####################
 
 #Install libwsclient
 RUN git clone https://github.com/PTS93/libwsclient && \
