@@ -4,7 +4,7 @@
 #FROM nvidia/cuda:9.1-cudnn7-devel-ubuntu16.04
 
 #Download base image bmabir17/cuda-opencv-nodejs:v1
-FROM bmabir17/cuda-opencv-nodejs:v1
+FROM bmabir17/cuda-opencv-nodejs:v2
 
 #FROM opencv-nodejs:v1
 LABEL maintainer "bmabir17@gmail.com"

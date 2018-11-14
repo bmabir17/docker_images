@@ -1,0 +1,13 @@
+version: "1"
+services:
+  mft:
+    image: bmabir17/face_recog:v1
+    container_name: mft_client
+    ports:
+      - "127.0.0.1:5050:5050"
+    devices:
+      - "/dev/video0:/dev/video0"
+    volumes:
+      -type: volume
+       source: /media/monon/New\ Volume/repo/survailance
+       target: /repo

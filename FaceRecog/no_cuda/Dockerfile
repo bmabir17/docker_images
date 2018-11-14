@@ -1,5 +1,9 @@
 #Download base image ubuntu 16.04
-FROM ubuntu:16.04
+#FROM ubuntu:16.04
+
+#Download base image bmabir17/opencv-nodejs:v1
+FROM bmabir17/opencv-nodejs:v1
+
 
 LABEL maintainer "bmabir17@gmail.com"
 ENV OPENCV_VERSION 3.4.2
@@ -12,8 +16,8 @@ RUN apt-get install -y build-essential
 RUN apt-get install nano
 
 #Dlib Installation
-RUN apt-get install libopenblas-dev liblapack-dev
-RUN apt-get install libx11-dev libgtk-3-dev
+RUN apt-get install -y libopenblas-dev liblapack-dev
+RUN apt-get install -y libx11-dev libgtk-3-dev
 RUN pip3 install dlib
 
 #Install Flask
@@ -22,88 +26,25 @@ RUN pip3 install flask
 RUN python3 -m pip install pymongo
 
 #Install jsonpickle
-RUN apt-get install python3-jsonpickle
+RUN apt-get install -y python3-jsonpickle
 #Install face_recognition
 RUN pip3 install face_recognition
-
-# Install all dependencies for OpenCV
-RUN apt-get -y update && \
-    apt-get -y install \
-        python3 \
-        python3-dev \
-        git \
-        wget \
-        unzip \
-        cmake \
-        build-essential \
-        pkg-config \
-        libatlas-base-dev \
-        gfortran \
-        libjasper-dev \
-        libgtk2.0-dev \
-        libavcodec-dev \
-        libavformat-dev \
-        libswscale-dev \
-        libjpeg-dev \
-        libpng-dev \
-        libtiff-dev \
-        libjasper-dev \
-        libv4l-dev \
-    && \
-# install python dependencies
-    wget https://bootstrap.pypa.io/get-pip.py && \
-    python3 get-pip.py && \
-    rm get-pip.py && \
-    pip3 install numpy \
-    && \
-# Get OpenCV
-    wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip -O opencv3.zip && \
-    unzip -q opencv3.zip && \
-    mv /opencv-$OPENCV_VERSION /opencv && \
-    rm opencv3.zip && \
-    wget https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.zip -O opencv_contrib3.zip && \
-    unzip -q opencv_contrib3.zip && \
-    mv /opencv_contrib-$OPENCV_VERSION /opencv_contrib && \
-    rm opencv_contrib3.zip \
-    && \
-# Prepare build for opencv
-    mkdir /opencv/build && cd /opencv/build && \
-    cmake -D CMAKE_BUILD_TYPE=RELEASE \
-      -D BUILD_PYTHON_SUPPORT=ON \
-      -D CMAKE_INSTALL_PREFIX=/usr/local \
-      -D OPENCV_EXTRA_MODULES_PATH=/opencv_contrib/modules \
-      -D BUILD_EXAMPLES=OFF \
-      -D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
-      -D BUILD_opencv_python3=ON \
-      -D BUILD_opencv_python2=OFF \
-      -D WITH_IPP=OFF \
-      -D WITH_FFMPEG=ON \
-      -D WITH_CUDA=ON \
-      -D CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-8.0 \
-      -D WITH_CUBLAS=ON \
-      -D WITH_V4L=ON .. \
-    && \
-# Install opencv
-    cd /opencv/build && \
-    make -j$(nproc) && \
-    make install && \
-    ldconfig \
-    && \
-# Clean
-   apt-get -y remove \
-        python3-dev \
-        libatlas-base-dev \
-        gfortran \
-        libjasper-dev \
-        libgtk2.0-dev \
-        libavcodec-dev \
-        libavformat-dev \
-        libswscale-dev \
-        libjpeg-dev \
-        libpng-dev \
-        libtiff-dev \
-        libjasper-dev \
-        libv4l-dev \
-    && \
-    apt-get clean && \
-    rm -rf /opencv /opencv_contrib /var/lib/apt/lists/*
+#Install requests
+RUN pip3 install requests
+#Install scipy
+RUN pip3 install scipy
+#Install flask_cors
+RUN pip3 install -U flask-cors
+#Install sklearn
+RUN pip3 install -U scikit-learn
+#Install jsonrpcserver
+RUN pip3 install jsonrpcserver
+#Install jsonrpcclient
+RUN pip3 install "jsonrpcclient[requests]"
+#Install flask-socketio
+RUN pip3 install flask-socketio
+#Install httpserver
+RUN pip3 install httpserver
+#Install lsof
+RUN apt-get install -y lsof
+ADD repo_setup.sh /home
